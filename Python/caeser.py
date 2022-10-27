@@ -10,6 +10,7 @@ def main():
         encrypt()
     elif choice == 2:
         x = input("Would you like to decrypt with key or brute-force it? Press 1 for key and 2 for brute-force")
+        x = int(x)
         if x == 1:
             decrypt()
         elif x == 2:
@@ -20,6 +21,7 @@ def main():
 def encrypt():
     plainttext = input("Enter the message you would like to encrypt")
     key = input("Enter the key you would like to use (0-25)")
+    key = int(key)
     ciphertext = ""
     for character in plainttext:
         if character.isalpha():
@@ -34,6 +36,7 @@ def encrypt():
 def decrypt():
     ciphertext = input("enter the message would would like to decrypt")
     key = input("Enter the key used (0-25)")
+    key = int(key)
     plaintext = ""
     for character in ciphertext:
         if character.isalpha():
