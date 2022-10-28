@@ -52,6 +52,7 @@ def brute_force():
     ciphertext = input("enter the message would would like to decrypt")
     plaintext = ""
     for key in range(26):
+        plaintext = ""
         for character in ciphertext:
             if character.isalpha():
                 if character.isupper():
